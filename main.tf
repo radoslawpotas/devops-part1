@@ -16,6 +16,11 @@ terraform {
   }
 }
 
+variable "BUILD_IMAGE" {
+  type        = string
+  description = "Letest image build"
+}
+
 provider "azurerm" {
   features {}
 }
@@ -37,7 +42,7 @@ resource "azurerm_container_group" "tf_container_group" {
 
   container {
     name   = "weatherapi"
-    image  = "radoslawpotas/devops.weatherapi"
+    image  = "radoslawpotas/devops.weatherapi:${var.BUILD_IMAGE}"
     cpu    = 1
     memory = 1
 
